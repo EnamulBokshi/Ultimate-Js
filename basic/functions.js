@@ -89,3 +89,45 @@ let allEven = numbers.every((number) => number % 2 === 0);
     The map() function creates a new array with the results of calling a provided function on every element in the calling array.
 
 */
+
+const sockets = [
+    {name: "Socket 1", status: "open",number:1},
+    {name: "Socket 2", status: "closed",number:2},
+    {name: "Socket 3", status: "open",number:3},
+    {name: "Socket 4", status: "closed",number:4},
+    {name: "Socket 5", status: "open",number:5},
+]
+const numberes = sockets.map((sockets) => sockets.number);
+// console.log(numberes) // [1, 2, 3, 4, 5]
+
+
+
+// Custome Higher Order Function
+
+const doubler = (callbak) => {
+    callbak();
+    callbak();
+}
+
+doubler(() => {
+    console.log("Hello World");
+})
+
+const customMap = (array, callback)=>{
+    let result = [];
+    for (let i = 0; i < array.length; i++){
+        result.push(callback(array[i], i, array))
+    }
+    return result;
+} 
+
+const customMapResult = customMap(sockets, (sockets) => sockets.number);
+// console.log(customMapResult) // [1, 2, 3, 4, 5]
+// The customMap function takes an array and a callback function as arguments.
+// It creates a new array and pushes the result of calling the callback function on each element of the array.
+// It returns the new array.
+//
+// The customMap function is a simplified version of the map() function.
+// It does not handle edge cases like empty arrays, non-array arguments, etc.
+// It is just for demonstration purposes.
+//

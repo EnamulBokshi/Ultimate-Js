@@ -131,3 +131,25 @@ const customMapResult = customMap(sockets, (sockets) => sockets.number);
 // It does not handle edge cases like empty arrays, non-array arguments, etc.
 // It is just for demonstration purposes.
 //
+
+// Higher Order Function, That return function
+
+const makeApplePie = (apple)=>{
+    return (sugar)=>{
+        return `Apple pie with ${apple} and ${sugar}`;
+    }
+}
+
+const applePie = makeApplePie("green apple");
+// console.log(applePie("white sugar")); // Apple pie with green apple and white sugar
+// console.log(applePie("brown sugar")); // Apple pie with green apple and brown sugar
+const makeAppender = (suffix)=>{
+    return (text)=>{
+        return text + suffix;
+    }
+}
+const exciting = makeAppender("!!!");
+console.log(exciting("Hello World")); // Hello World!!!
+
+const puzzling = makeAppender("???");
+console.log(puzzling("Goodbye")); // Goodbye???

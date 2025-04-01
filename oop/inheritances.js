@@ -41,7 +41,7 @@ class Actor{
         this.y += dy;
     }
     distanceTo(otherActor){
-        let dx = otherActor.x - thix.x;
+        let dx = otherActor.x - this.x;
         let dy = otherActor.y - this.y;
         return Math.hypot(dx, dy);
     }
@@ -75,3 +75,33 @@ player.move(5,5);
 enemy.distanceTo(player); // 3.605551275463989
 enemy.attack(player); // false
 player.hp; // 90
+
+
+// Prototype based inheritance
+// In JavaScript, inheritance is achieved through prototypes.
+// Every object in JavaScript has a prototype property.
+// The prototype property is an object that contains properties and methods that are shared by all instances of the object.
+// When a new object is created from a function, it inherits the properties and methods from the prototype object.
+// This allows you to create a chain of objects, where each object can inherit properties and methods from its parent object.
+
+function Cat(name){
+    this.name = name;
+}
+Cat.prototype.speak = function(){
+    console.log(this.name + " says meow");
+}
+
+let cat = new Cat("Tom");
+cat.speak(); // Tom says meow
+
+
+// the prototype chain 
+console.log(cat.__proto__); // {speak: ƒ}
+console.log(cat.constructor); // ƒ Cat(name)
+cat.hasOwnProperty("name"); // true
+cat.hasOwnProperty("speak"); // false
+
+// Overriding the prototype method
+let cat2 = new Cat("Jerry");
+cat2.speak = function(){console.log(`Hello!!! I'M ${this.name}!`)}
+cat2.speak();

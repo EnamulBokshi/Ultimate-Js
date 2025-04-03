@@ -11,6 +11,7 @@ let ballPosition ;
 const MAX_COMPUTER_SPEED = 2;
 let isGameOver = false;
 
+let winner = null;
 // Ball speed
 let xSpeed;
 let ySpeed;
@@ -168,6 +169,12 @@ function checkCollision(){
 
     if(leftScore >= 5 || rightScore >= 5){
         isGameOver = true;
+        if(leftScore >= 5){
+            winner = "Ops!! Computer wins";
+        }
+        if(rightScore >= 5){
+            winner = "Congratulations, you win!";
+        }
     }
 
     // if(ball.left<0 || ball.right > width){
@@ -185,12 +192,11 @@ function drawGameOver(){
     ctx.font = "50px Arial";
     ctx.textAlign = "center";
     ctx.fillText("Game Over", width/2, height/2);
+    ctx.fillStyle = "orange";
     ctx.font = "30px Arial";
     ctx.textAlign = "center";
-    ctx.fillText("Winner is computer ", width/2, height/2+30);
-    // ctx.font = "20px Arial"
-    // ctx.textAlign = "center";
-    // ctx.fillText("Score:",leftScore, width/2, height/2 +50)
+    ctx.fillText(winner, width/2, height/2+30);
+    ctx.fillStyle = "white";
     ctx.font = "20px Arial";
     ctx.textAlign = "center";
     ctx.fillText("Click to Restart", width/2, height/2 + 60);

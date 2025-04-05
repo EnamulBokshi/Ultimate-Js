@@ -83,3 +83,53 @@ function compose(...fns) {
 }
 
 
+function addOne(x) {
+    return x + 1;
+}
+function multiplyByTwo(x) {
+    return x * 2;
+}
+const composedFunction = compose(multiplyByTwo, addOne);
+console.log(composedFunction(3)); // (3 + 1) * 2 = 8
+//
+// Function Chaining
+class Calculator {
+    constructor(value = 0) {
+        this.value = value;
+    }
+    add(x) {
+        this.value += x;
+        return this; // Return the instance for chaining
+    }
+    subtract(x) {
+        this.value -= x;
+        return this; // Return the instance for chaining
+    }
+    multiply(x) {
+        this.value *= x;
+        return this; // Return the instance for chaining
+    }
+    getValue() {
+        return this.value;
+    }
+}
+const calculator = new Calculator();
+console.log(calculator.add(5).subtract(2).multiply(3).getValue()); // ((0 + 5) - 2) * 3 = 9
+// Function Decorators
+function logExecutionTime(fn) {
+    return function(...args) {
+        const start = performance.now();
+        const result = fn(...args);
+        const end = performance.now();
+        console.log(`Execution time: ${end - start} ms`);
+        return result;
+    };
+}
+function slowFunction() {
+    for (let i = 0; i < 1e7; i++) {} // Simulate a slow operation
+    return "Done";
+}
+const decoratedFunction = logExecutionTime(slowFunction);
+console.log(decoratedFunction()); // Logs execution time
+
+

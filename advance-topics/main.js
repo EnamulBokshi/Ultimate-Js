@@ -132,4 +132,35 @@ function slowFunction() {
 const decoratedFunction = logExecutionTime(slowFunction);
 console.log(decoratedFunction()); // Logs execution time
 
-
+// Function Overloading
+function add(a, b) {
+    if (typeof a === 'number' && typeof b === 'number') {
+        return a + b;
+    } else if (typeof a === 'string' && typeof b === 'string') {
+        return a + ' ' + b;
+    }
+}
+console.log(add(2, 3)); // 5
+console.log(add("Hello", "World")); // "Hello World"
+// Function Binding
+function greet() {
+    console.log(`Hello, ${this.name}`);
+}
+const person = {
+    name: "Alice"
+};
+const boundGreet = greet.bind(person);
+boundGreet(); // "Hello, Alice"
+// Function Unbinding
+function unbind(fn, context) {
+    return function(...args) {
+        return fn.apply(context, args);
+    };
+}
+const unboundGreet = unbind(greet, person);
+unboundGreet(); // "Hello, Alice"
+// Function Rest Parameters
+function sum(...args) {
+    return args.reduce((acc, val) => acc + val, 0);
+}
+console.log(sum(1, 2, 3, 4)); // 10

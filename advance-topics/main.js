@@ -148,12 +148,29 @@ Order of precedence for 'this'
 */
 
 
+
+/* Object Prototyping */
+// 
+const personPrototype = {
+
+}
+const alicePrototype = new personPrototype();
+alicePrototype.name = "Alice";
+alicePrototype.greet = function() {
+    console.log(`Hello, ${this.name}`);
+}
+alicePrototype.greet(); // Hello, Alice
+
+const bobPrototype = new personPrototype();
+bobPrototype.name = "Bob";
+bobPrototype.greet()
+
 // Arrow functions
 const arrowGreet = () => {
     console.log(`Hello, ${this.name}`); // 'this' refers to the lexical scope
 }
 const name2 = "Arrow Global";
-arrowGreet(); // Hello, Arrow Global
+// arrowGreet(); // Hello, Arrow Global
 
 
 
@@ -161,7 +178,7 @@ arrowGreet(); // Hello, Arrow Global
 function hoistedFunction() {
     console.log("This function is hoisted!");
 }
-hoistedFunction(); // This function is hoisted!
+// hoistedFunction(); // This function is hoisted!
 
 
 // Partial Application
